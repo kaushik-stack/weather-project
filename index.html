@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NeoSky • Pro Weather</title>
+  <meta name="description" content="A beautiful, professional weather app with AQI, forecast, particles and tips" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="fx"></canvas>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">🌤️</div>
+        <div>NeoSky Weather</div>
+      </div>
+
+      <div class="controls">
+        <button class="btn secondary" id="themeToggle" type="button" title="Toggle light/dark mode">🌙</button>
+        <form class="searchbar" id="searchForm" autocomplete="off" role="search">
+          <input id="cityInput" list="cities" placeholder="Search city… (e.g., London)" required />
+          <datalist id="cities">
+            <option>London</option><option>New York</option><option>Delhi</option>
+            <option>Mumbai</option><option>Bengaluru</option><option>Tokyo</option>
+            <option>Paris</option><option>Dubai</option><option>Singapore</option>
+            <option>Sydney</option>
+          </datalist>
+          <button class="btn" type="submit">Search</button>
+          <button class="btn secondary" type="button" id="geoBtn" title="Use my location">📍</button>
+          <div class="toggle" role="group" aria-label="Unit toggle">
+            <button type="button" id="cBtn" class="active" aria-pressed="true">°C</button>
+            <button type="button" id="fBtn" aria-pressed="false">°F</button>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <section class="card fade" id="current">
+        <div class="hero">
+          <img id="icon" alt="Icon" />
+          <div>
+            <div class="place" id="place">—</div>
+            <div class="desc" id="desc">—</div>
+            <div class="temp" id="temp">—</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="pill"><span class="k">Feels like</span><span class="v" id="feels">—</span></div>
+          <div class="pill"><span class="k">Humidity</span><span class="v" id="humidity">—</span></div>
+          <div class="pill"><span class="k">Wind</span><span class="v" id="wind">—</span></div>
+          <div class="pill"><span class="k">Visibility</span><span class="v" id="visibility">—</span></div>
+          <div class="pill"><span class="k">Pressure</span><span class="v" id="pressure">—</span></div>
+          <div class="pill"><span class="k">Rain (3h)</span><span class="v" id="rain">—</span></div>
+        </div>
+
+        <div class="section">
+          <h3>Air quality</h3>
+          <div id="aqiBox" class="aqi"><div class="dot"></div><div id="aqiText" class="muted">—</div></div>
+        </div>
+
+        <div class="section">
+          <h3>Lifestyle tips</h3>
+          <div class="tips" id="tips"></div>
+        </div>
+
+        <div class="status" id="status"></div>
+      </section>
+
+      <!-- Forecast section (new) -->
+      <section class="card fade" id="forecastCard">
+        <h3>5-Day Forecast</h3>
+        <div id="forecast" class="forecast-grid" aria-live="polite"></div>
+      </section>
+
+      <aside class="card fade" id="aboutCard">
+        <h3>About</h3>
+        <p class="muted">Type a city or use 📍. Backgrounds and particles adapt to the weather. Shows rain %, AQI, visibility, pressure and tips.</p>
+        <p class="muted" style="font-size:12px;margin-top:12px">Powered by OpenWeather</p>
+      </aside>
+    </main>
+  </div>
+
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
