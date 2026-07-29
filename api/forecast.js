@@ -1,6 +1,10 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { lat, lon, units } = req.query;
   const API_KEY = process.env.API_KEY;
+
+  if (!API_KEY) {
+    return res.status(500).json({ error: 'Server weather API key is not configured.' });
+  }
   
   let url = `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&lat=${lat}&lon=${lon}`;
   if (units) url += `&units=${units}`;
@@ -12,4 +16,4 @@ export default async function handler(req, res) {
   } catch (e) {
     return res.status(500).json({ error: e.message });
   }
-}
+};
