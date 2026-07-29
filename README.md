@@ -82,5 +82,5 @@ Error handling for invalid city names
 
 Author
 
-Sujit Kumar Sahu
+Kaushik Pradhan
 B.Tech CSE, GIET University
