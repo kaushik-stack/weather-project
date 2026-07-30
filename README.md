@@ -66,6 +66,8 @@ npm start
 
 Then open http://127.0.0.1:5501. Do not use Live Server: it can serve the HTML but cannot provide the app's `/api/*` weather routes.
 
+If you prefer VS Code Live Server, keep `npm start` running in a second terminal. Open the page with Live Server at `http://127.0.0.1:5500`; the app will automatically use the local API at port `5501`.
+
 Enter a city name and view the weather details
 
 Future Enhancements

@@ -1,7 +1,15 @@
 // ===== CONFIG =====
-const W_URL = "/api/weather";
-const F_URL = "/api/forecast";
-const AQ_URL = "/api/aqi";
+// Live Server only serves static files. When the page is opened there, send
+// API requests to the local Node server instead of asking Live Server for
+// routes that it does not provide.
+const API_ORIGIN =
+  ['localhost', '127.0.0.1'].includes(window.location.hostname) &&
+  window.location.port === '5500'
+    ? 'http://127.0.0.1:5501'
+    : '';
+const W_URL = `${API_ORIGIN}/api/weather`;
+const F_URL = `${API_ORIGIN}/api/forecast`;
+const AQ_URL = `${API_ORIGIN}/api/aqi`;
 
 // ===== DOM =====
 const form = document.getElementById('searchForm');

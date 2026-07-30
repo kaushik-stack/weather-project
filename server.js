@@ -22,7 +22,11 @@ const weatherCodes = {
 };
 
 function sendJson(res, status, data) {
-  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.writeHead(status, {
+    'Content-Type': 'application/json; charset=utf-8',
+    // Lets a page served by VS Code Live Server (port 5500) use this local API.
+    'Access-Control-Allow-Origin': '*'
+  });
   res.end(JSON.stringify(data));
 }
 
