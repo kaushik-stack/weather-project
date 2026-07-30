@@ -1,18 +1,9 @@
-module.exports = async function handler(req, res) {
-  const { lat, lon } = req.query;
-  const API_KEY = process.env.API_KEY;
+const { aqi } = require('./_openMeteo');
 
-  if (!API_KEY) {
-    return res.status(500).json({ error: 'Server weather API key is not configured.' });
-  }
-  
-  let url = `https://api.openweathermap.org/data/2.5/air_pollution?appid=${API_KEY}&lat=${lat}&lon=${lon}`;
-  
+module.exports = async function handler(req, res) {
   try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return res.status(response.status).json(data);
-  } catch (e) {
-    return res.status(500).json({ error: e.message });
+    return res.status(200).json(await aqi(req.query));
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Unable to load air quality data.' });
   }
 };
